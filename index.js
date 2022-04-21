@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const mysql = require('mysql2')
 
-const db = mysql.createConnection(process.env.LOCAL_URL)
+const db = require('./db')
 
 const inquirer = require('inquirer')
 
