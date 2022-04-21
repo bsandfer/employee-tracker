@@ -23,7 +23,7 @@ inquirer.prompt([{
         addRole()
         break
         case 'Add Employee':
-        addEmployee()
+        addEmployee() 
         break
         case 'View Departments':
         viewDepartments()
@@ -80,7 +80,7 @@ const addRole = () => {
     ])
     .then(role => {
         console.log(role)
-        db.query('INSERT INTO departments SET ?', roles, err=> {
+        db.query('INSERT INTO departments SET ?', role, err=> {
             if(err) {console.log(err)}
         })
         console.log('role added!')
@@ -114,12 +114,23 @@ const addEmployee = () => {
 
     ])
     .then(employee => {
-        console.log(role)
-        db.query('INSERT INTO departments SET ?', roles, err=> {
+       if(employee.managerBoolean === 'yes') {
+           console.log('you tried to add a manager!')
+           delete employee.managerBoolean
+           console.log(employee)
+           db.query('INSERT INTO employees SET ?', role, err=> {
             if(err) {console.log(err)}
         })
         console.log('role added!')
         question()
+
+
+       } else if (employee.managerBoolean === 'no') {
+           console.log('you tried to add a subordinate')
+       }
+
+
+
     })
 }
 
