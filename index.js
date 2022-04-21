@@ -80,7 +80,7 @@ const addRole = () => {
     ])
     .then(role => {
         console.log(role)
-        db.query('INSERT INTO departments SET ?', role, err=> {
+        db.query('INSERT INTO roles SET ?', role, err=> {
             if(err) {console.log(err)}
         })
         console.log('role added!')
