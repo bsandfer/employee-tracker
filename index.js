@@ -118,10 +118,10 @@ const addEmployee = () => {
            console.log('you tried to add a manager!')
            delete employee.managerBoolean
            console.log(employee)
-           db.query('INSERT INTO employees SET ?', role, err=> {
+           db.query('INSERT INTO employees SET ?', employee, err=> {
             if(err) {console.log(err)}
         })
-        console.log('role added!')
+        console.log('employee added!')
         question()
 
 
