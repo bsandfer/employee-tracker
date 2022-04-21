@@ -126,7 +126,26 @@ const addEmployee = () => {
 
 
        } else if (employee.managerBoolean === 'no') {
-           console.log('you tried to add a subordinate')
+           inquirer.prompt([{
+               message: 'what is the id of this employees manager?',
+               type: 'input',
+               name: 'manager_id'
+           }])
+           .then(subordinate => {
+               console.log(subordinate)
+                
+                delete employee.managerBoolean
+                let newEmployee = {
+                    ...employee,
+                    ...subordinate
+                }
+                db.query('INSERT INTO employees SET ?', newEmployee, err=> {
+                    if(err) {console.log(err)}
+                })
+                console.log('employee added!')
+                question()
+           })
+
        }
 
 
